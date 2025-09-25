@@ -1,32 +1,31 @@
-import { GoogleGenAI } from "@google/genai";
 import { AspectRatio } from '../types';
 
 export const generateImage = async (prompt: string, aspectRatio: AspectRatio): Promise<string> => {
-  if (!process.env.API_KEY) {
-    throw new Error("API_KEY environment variable is not set. Please configure it in your deployment settings.");
-  }
-  
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
   try {
-    const response = await ai.models.generateImages({
-        model: 'imagen-4.0-generate-001',
-        prompt: prompt,
-        config: {
-          numberOfImages: 1,
-          outputMimeType: 'image/jpeg',
-          aspectRatio: aspectRatio,
-        },
+    const response = await fetch('/api/generate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prompt, aspectRatio }),
     });
 
-    if (response.generatedImages && response.generatedImages.length > 0 && response.generatedImages[0].image.imageBytes) {
-      const base64ImageBytes: string = response.generatedImages[0].image.imageBytes;
-      return `data:image/jpeg;base64,${base64ImageBytes}`;
+    if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: "An unknown error occurred on the server." }));
+        const message = errorData.error || `Request failed with status ${response.status}`;
+        throw new Error(message);
+    }
+
+    const data = await response.json();
+
+    if (data.imageUrl) {
+        return data.imageUrl;
     } else {
-      throw new Error("API did not return any images.");
+        throw new Error("API response did not contain an image URL.");
     }
   } catch (error) {
-    console.error('Error generating image:', error);
-    throw new Error('Failed to communicate with the Gemini API.');
+    console.error('Error fetching from /api/generate endpoint:', error);
+    // Re-throw the error so the UI component can catch it and display a message.
+    throw error;
   }
 };
