@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { AspectRatio } from '../types';
 
@@ -20,7 +19,7 @@ const AspectRatioButton = ({ ratio, selectedRatio, setRatio, isLoading }: { rati
             type="button"
             onClick={() => setRatio(ratio)}
             disabled={isLoading}
-            className={`flex-1 px-3 py-2 text-sm font-medium text-center rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-indigo-500 ${isSelected ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-700 text-slate-300 hover:bg-slate-600'} disabled:opacity-50 disabled:cursor-not-allowed`}
+            className={`flex-1 px-3 py-2 text-sm font-medium text-center rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-indigo-500 ${isSelected ? 'bg-indigo-600 text-white shadow-lg' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'} disabled:opacity-50 disabled:cursor-not-allowed`}
         >
             {ratio}
         </button>
@@ -41,9 +40,9 @@ export const ImageGeneratorForm: React.FC<ImageGeneratorFormProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-slate-800 p-6 rounded-xl shadow-2xl space-y-6 border border-slate-700">
+    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow-lg space-y-6 border border-gray-200">
       <div>
-        <label htmlFor="prompt" className="block text-sm font-medium text-slate-300 mb-2">
+        <label htmlFor="prompt" className="block text-sm font-medium text-gray-700 mb-2">
           Your Prompt
         </label>
         <textarea
@@ -51,13 +50,13 @@ export const ImageGeneratorForm: React.FC<ImageGeneratorFormProps> = ({
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="e.g., A cinematic shot of a raccoon in a library, wearing a monocle"
-          className="w-full h-32 p-3 bg-slate-900 border border-slate-600 rounded-lg text-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 resize-none"
+          className="w-full h-32 p-3 bg-gray-100 border border-gray-300 rounded-lg text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 resize-none"
           disabled={isLoading}
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-slate-300 mb-2">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
           Aspect Ratio
         </label>
         <div className="flex gap-2">
@@ -70,7 +69,7 @@ export const ImageGeneratorForm: React.FC<ImageGeneratorFormProps> = ({
       <button
         type="submit"
         disabled={isLoading || !prompt}
-        className="w-full flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300 shadow-lg"
+        className="w-full flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 disabled:cursor-not-allowed text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300 shadow-lg"
       >
         {isLoading ? (
           <>

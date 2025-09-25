@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback } from 'react';
 import { Header } from './components/Header';
 import { ImageGeneratorForm } from './components/ImageGeneratorForm';
@@ -33,7 +32,7 @@ const App: React.FC = () => {
   }, [prompt, aspectRatio, isLoading]);
 
   return (
-    <div className="min-h-screen bg-slate-900 text-gray-100 font-sans flex flex-col items-center p-4">
+    <div className="min-h-screen bg-gray-50 text-gray-800 font-sans flex flex-col items-center p-4">
       <Header />
       <main className="w-full max-w-4xl mx-auto mt-8 flex flex-col lg:flex-row gap-8">
         <div className="lg:w-1/3 flex-shrink-0">

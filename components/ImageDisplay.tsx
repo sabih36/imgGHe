@@ -9,11 +9,11 @@ interface ImageDisplayProps {
 }
 
 const Placeholder = () => (
-    <div className="flex flex-col items-center justify-center h-full text-center text-slate-500">
+    <div className="flex flex-col items-center justify-center h-full text-center text-gray-500">
          <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
         </svg>
-        <h3 className="text-xl font-semibold text-slate-400">Your generated image will appear here</h3>
+        <h3 className="text-xl font-semibold text-gray-600">Your generated image will appear here</h3>
         <p className="mt-1">Enter a prompt and click "Generate" to see the magic happen.</p>
     </div>
 )
@@ -30,7 +30,7 @@ export const ImageDisplay: React.FC<ImageDisplayProps> = ({ imageUrl, isLoading,
   };
 
   return (
-    <div className="w-full aspect-square bg-slate-800/50 border-2 border-dashed border-slate-700 rounded-xl flex items-center justify-center p-4 transition-all duration-300">
+    <div className="w-full aspect-square bg-white border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center p-4 transition-all duration-300 shadow-inner">
       {isLoading && <Spinner />}
       {error && !isLoading && <ErrorDisplay message={error} />}
       {imageUrl && !isLoading && !error && (
@@ -43,7 +43,7 @@ export const ImageDisplay: React.FC<ImageDisplayProps> = ({ imageUrl, isLoading,
           <button
             onClick={() => handleDownload(imageUrl)}
             aria-label="Download image"
-            className="absolute top-4 right-4 bg-slate-900/60 backdrop-blur-sm text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-indigo-500"
+            className="absolute top-4 right-4 bg-white/60 backdrop-blur-sm text-gray-800 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
